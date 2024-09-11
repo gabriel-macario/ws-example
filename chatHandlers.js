@@ -1,8 +1,14 @@
 const { ChatMessage } = require('./enums/eventTypes');
 
 module.exports = (io, socket) => {
-    const sendChatMessage = (message) => {
-        io.emit(ChatMessage, message);
+    const sendChatMessage = ({
+        message,
+        user
+    }) => {
+        io.emit(ChatMessage, {
+            message,
+            user
+        });
     }
 
     socket.on(ChatMessage, sendChatMessage);
